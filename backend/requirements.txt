@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# SIH26188 — AI-Based Fake Identity & Document Screening System
+# Backend dependencies (all free / no paid APIs)
+# ---------------------------------------------------------------------------
+
+# --- Web framework ---
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
+pydantic==2.13.5
+pydantic-settings==2.5.2
+
+# --- Database ---
+SQLAlchemy==2.0.52
+
+# --- Imaging / Computer Vision ---
+opencv-python-headless==4.11.0.86
+Pillow==10.4.0
+numpy==2.2.6
+scikit-image==0.26.0
+scikit-learn==1.8.0
+
+# --- OCR ---
+# Tesseract is the reliable default (requires the Tesseract-OCR binary installed
+# on the system). PaddleOCR is auto-detected and used if it is installed.
+pytesseract==0.3.13
+
+# --- Face detection & verification ---
+# Uses OpenCV's YuNet (detector) + SFace (embedder) ONNX models, which ship in
+# backend/app/models_store/ — no dlib/compilation required. (opencv-python-headless
+# above provides cv2.FaceDetectorYN / cv2.FaceRecognizerSF.)
+
+# --- PDF report generation ---
+reportlab==5.0.1
+
+# ---------------------------------------------------------------------------
+# OPTIONAL — install manually if you want the alternative engines:
+#   paddleocr paddlepaddle      (alternative OCR engine, auto-detected)
+#   deepface                    (alternative face engine, auto-detected)
+#   torch                       (for a future trained ML tampering model)
+# The system runs fully without these; it degrades honestly when absent.
+# ---------------------------------------------------------------------------

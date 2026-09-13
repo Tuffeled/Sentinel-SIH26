@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-09-13T07:20:50.393909Z",
+  "notice": "SYNTHETIC DATA ONLY \u2014 fictional documents for demonstration.",
+  "documents": [
+    {
+      "file": "passport_001_genuine.jpg",
+      "ground_truth": "GENUINE",
+      "identity": "001",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_001_altered.jpg",
+      "ground_truth": "ALTERED",
+      "identity": "001",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_002_genuine.jpg",
+      "ground_truth": "GENUINE",
+      "identity": "002",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_002_altered.jpg",
+      "ground_truth": "ALTERED",
+      "identity": "002",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_003_genuine.jpg",
+      "ground_truth": "GENUINE",
+      "identity": "003",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_003_altered.jpg",
+      "ground_truth": "ALTERED",
+      "identity": "003",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_004_genuine.jpg",
+      "ground_truth": "GENUINE",
+      "identity": "004",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_004_altered.jpg",
+      "ground_truth": "ALTERED",
+      "identity": "004",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_005_genuine.jpg",
+      "ground_truth": "GENUINE",
+      "identity": "005",
+      "type": "PASSPORT"
+    },
+    {
+      "file": "passport_005_altered.jpg",
+      "ground_truth": "ALTERED",
+      "identity": "005",
+      "type": "PASSPORT"
+    }
+  ],
+  "extra_documents": [
+    {
+      "file": "passport_099_watchlist_demo.jpg",
+      "ground_truth": "GENUINE",
+      "identity": "099",
+      "type": "PASSPORT",
+      "note": "identifier present in synthetic watchlist"
+    }
+  ]
+}
