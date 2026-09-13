@@ -14,6 +14,7 @@ reads. Nothing is faked — a module that cannot run reports SKIPPED/WARNING.
 """
 from __future__ import annotations
 
+import copy
 import threading
 import time
 from datetime import datetime
@@ -21,6 +22,7 @@ from pathlib import Path
 
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
+from sqlalchemy.orm.attributes import flag_modified
 
 from ..config import settings
 from ..core.constants import (
@@ -140,7 +142,10 @@ def _init_stages() -> list[dict]:
 
 def _set_stage(db: Session, inv: Investigation, key: str, status: str,
                detail: str | None = None, duration_ms: int | None = None) -> None:
-    stages = list(inv.stages or _init_stages())
+    # Deep-copy so the reassigned list holds NEW dict objects; without this,
+    # in-place edits share refs with the loaded value and SQLAlchemy's JSON
+    # change-detection misses the update (stages would appear stuck on WAITING).
+    stages = copy.deepcopy(inv.stages or _init_stages())
     completed = 0
     for s in stages:
         if s["key"] == key:
@@ -153,6 +158,7 @@ def _set_stage(db: Session, inv: Investigation, key: str, status: str,
                            StageStatus.SKIPPED, StageStatus.FAILED):
             completed += 1
     inv.stages = stages
+    flag_modified(inv, "stages")  # force the JSON column to be written
     inv.current_stage = key
     inv.progress = int(completed / len(stages) * 100)
     inv.updated_at = datetime.utcnow()
